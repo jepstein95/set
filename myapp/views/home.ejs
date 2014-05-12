@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://ajax.cdnjs.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+<script src="http://ajax.cdnjs.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+<script src="/javascripts/home.js"></script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+
+<title>App</title>
+
+</head>
+
+<body>
+
+<div id="login" class="main">
+
+	<h2>Create User</h2>
+	Username: <input type="text" class="input" id="newUsername"><br>
+	Password: <input type="password" class="input" id="newPassword"><br>
+	<input type="button" class="button" value="Create" id="createUser"><br>
+
+	<br>
+	
+	<h2>Login</h2>
+	Username: <input type="text" class="input" id="username"><br>
+	Password: <input type="password" class="input" id="password"><br>
+	<input type="button" class="button" value="Login" id="login"><br>
+	
+	<p id="message"></p>
+	
+</div>
+
+<div id="main" class="main">
+	<h1 id="title"></h1>
+
+	<div id="lobby">
+		<p>Lobby:</p>
+		<ul id="users"></ul>
+		<input type="button" class="button" value="Logout" id="logout">
+	</div>
+	
+	<div id="room">
+		<p id="setMsg"></p>
+		<p id="deckSize"></p>
+		<input type="button" class="button" value="Quit" id="leave">
+		<input type="button" class="button" value="SET!" id="set">
+		<br>
+		<ul id="stack1" class="stack"></ul>
+		<ul id="stack2" class="stack"></ul>
+		<ul id="stack3" class="stack"></ul>
+	</div>
+	
+	<div id="chatroom">
+		<p>Chat:</p>
+		<ul id="chat"></ul>
+		<input type="text" class="input" id="chatMsg">
+		<input type="button" class="button" value="Send" id="submitMsg">
+	</div>
+</div>
+	
+</body>
+</html>
