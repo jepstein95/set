@@ -24,7 +24,8 @@ define([
     picked: [],
 
     events: {
-      'click .set': 'setCall'
+      'click .set':   'setCall',
+      'click .leave': 'leave'
     },
 
     listeners: {
@@ -131,7 +132,11 @@ define([
     },
 
     leave: function() {
-      $('.room').css('visibility', 'hidden');
+      api.trigger('leave');
+      api.emit('leave-room', { room: me.get('room'), username: me.get('username') });
+      me.set('room', null);
+      me.set('avail', true);
     }
+    
   });
 });
