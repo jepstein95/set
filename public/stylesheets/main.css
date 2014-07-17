@@ -1,8 +1,23 @@
-/* line 30, sass/_skin.scss */
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+/* line 32, sass/_skin.scss */
 .game, .user,
 .message {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
+}
+
+/* line 37, sass/_skin.scss */
+.user .username,
+.user .record {
+  *zoom: 1;
+}
+/* line 40, sass/_skin.scss */
+.user .username:before,
+.user .record:before, .user .username:after,
+.user .record:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 /* line 4, sass/_base.scss */
@@ -16,7 +31,7 @@
 body {
   color: white;
   background-image: url(/../images/binding_dark.png);
-  font-family: monospace;
+  font-family: "Raleway";
 }
 
 /* line 14, sass/_base.scss */
@@ -48,22 +63,21 @@ input[type='password'] {
 input[type='text']:focus,
 input[type='password']:focus {
   outline: 0;
-  color: #660066;
-  border-color: #660066;
 }
 
-/* line 42, sass/_base.scss */
+/* line 40, sass/_base.scss */
 input[type='button'] {
   height: 30px;
   width: 80px;
   background: transparent;
-  border: 2px solid white;
+  border: none;
   color: white;
   text-align: center;
-  font-family: monospace;
+  font-family: "Raleway";
+  font-size: 16px;
   display: inline-block;
 }
-/* line 52, sass/_base.scss */
+/* line 51, sass/_base.scss */
 input[type='button']:focus {
   outline: 0;
 }
@@ -99,7 +113,7 @@ input[type='button']:focus {
   margin-right: 10px;
   width: 190px;
 }
-/* line 147, ../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, ../../../../.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .lobby {
   overflow-x: hidden;
 }
@@ -111,7 +125,7 @@ input[type='button']:focus {
   margin-right: 10px;
   width: 550px;
 }
-/* line 147, ../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, ../../../../.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .game {
   overflow-x: hidden;
 }
@@ -124,7 +138,7 @@ input[type='button']:focus {
   width: 190px;
   margin-right: 0;
 }
-/* line 147, ../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, ../../../../.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .chat {
   overflow-x: hidden;
 }

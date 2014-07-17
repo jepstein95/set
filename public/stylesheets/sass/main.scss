@@ -51,3 +51,10 @@ $cut-size: 20px;
   @extend %content-well;
   margin: 0 $blueprint-grid-margin 4px 0;
 }
+
+.user {
+  .username,
+  .record {
+    @extend %clearfix;
+  }
+}

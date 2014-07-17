@@ -20,24 +20,12 @@ define([
     },
     
     initialize: function() {
-      this.users = new Users(null, { view: this });
       _View.prototype.initialize.apply(this);
+      this.users = new Users(null, { view: this });
       api.emit('get-users', {});
     },
 
     addUserLi: function(model) {
-      //  $(challenge).click(function(event) {
-      //    api.emit('challenge', { challenger: me.get('username'), other: model.get('username') });
-      //    me.set('avail', false);
-      //  });
-      
-      //$(li).hover(function() {
-      //    $(this).find('div').show();
-      //  },
-      //  function() {
-      //    $(this).find('div').hide();
-      //});
-      //$(ul).append(li) 
       var data = {
         username: model.get('username'),
         nickname: model.get('nickname'),
@@ -47,7 +35,7 @@ define([
         score: 0
       };
       
-      var user = renderTemplate('user', data);
+      var user = this.renderTemplate('user', data);
       $('.users').append(user);
     },
       
@@ -57,8 +45,8 @@ define([
 
     getUsersResponse: function(content) {
       this.users.reset();
-      for (var i = 0; i < content.users.length; i++) {
-        var user = content.users[i];
+      for (var i = 0; i < content.usernames.length; i++) {
+        var user = content.usernames[i];
         if (user != '' && user != me.get('username')) {
           var nickname = content.nicknames[i];
           var wins = content.wins[i];

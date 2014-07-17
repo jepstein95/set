@@ -39,11 +39,9 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-var users = []; //FIXME
-
 // DEVELOPMENT
 var added = 0;
-var logins = ["josh", "j.epstein", "babou", "jorge", "jose guillermo", "beaver", "yourmom", "nadie"];
+var logins = [ "josh", "babou", "jorge" ];
 
 // TODO: HANDLE CASE WHERE USER HAS MULTIPLE TABS OPEN
 function restrict(req, res, next) {
@@ -67,8 +65,6 @@ app.get('/main', restrict, routes.main);
 
 app.get('/logout', function(req, res) {
   if (req.session.user) {
-    var index = users.indexOf(req.session.user); // indexOf --> NO IE
-    users.splice(index, 1);
     delete req.session.user;
   }
   res.redirect('/login')
@@ -80,9 +76,8 @@ app.post('/create', function(req, res) {
 
   var hashedPassword = passwordHash.generate(password);
   database.query('SELECT * FROM users where username=?;', [username], function(err, rows, fields) {
-    if(rows[0] == null) {
+    if(rows && rows[0] == null) {
       database.query('INSERT INTO users (username, password) values (?, ?);', [username, hashedPassword], function(err, result) {
-        users.push(username);
         req.session.user = username;
         res.send({ redirect: '/main' });
       });
@@ -96,16 +91,15 @@ app.post('/login', function(req, res) {
   var username = req.body.username,
       password = req.body.password;
 
-  if (_.contains(users, username)) {
+  if (false) {
     res.send({ message: 'USER ALREADY LOGGED IN' });
   } else {
     database.query('SELECT * FROM users where username=?;', [username], function(err, rows, fields) {
-      if (rows[0] != null) {
+      if (rows && rows[0] != null) {
         hashedPassword = rows[0].password;
         var success = passwordHash.verify(password, hashedPassword);
         if(success) {
           req.session.user = username;
-          users.push(username);
           res.send({ redirect: '/main' });
         } else {
           res.send({ message: 'PASSWORD INCORRECT' });

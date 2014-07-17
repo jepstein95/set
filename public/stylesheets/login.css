@@ -1,23 +1,24 @@
-/* line 24, sass/_skin.scss */
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+/* line 26, sass/_skin.scss */
 .login-form, .message {
   display: table;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 30, sass/_skin.scss */
+/* line 32, sass/_skin.scss */
 .create, .login {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
 }
 
-/* line 35, sass/_skin.scss */
+/* line 37, sass/_skin.scss */
 .input,
 .create-button,
 .login-button {
   *zoom: 1;
 }
-/* line 38, sass/_skin.scss */
+/* line 40, sass/_skin.scss */
 .input:before,
 .create-button:before,
 .login-button:before, .input:after,
@@ -28,24 +29,18 @@
   clear: both;
 }
 
-/* line 46, sass/_skin.scss */
+/* line 48, sass/_skin.scss */
 .input:hover,
 .create-button:hover,
 .login-button:hover {
   background-color: rgba(102, 102, 102, 0.5);
 }
 
-/* line 52, sass/_skin.scss */
+/* line 54, sass/_skin.scss */
 .input:focus,
 .create-button:focus,
 .login-button:focus {
   background-color: rgba(102, 102, 102, 0.5);
-}
-
-/* line 58, sass/_skin.scss */
-.create-button:hover,
-.login-button:hover {
-  color: #660066;
 }
 
 /* line 4, sass/_base.scss */
@@ -59,7 +54,7 @@
 body {
   color: white;
   background-image: url(/../images/binding_dark.png);
-  font-family: monospace;
+  font-family: "Raleway";
 }
 
 /* line 14, sass/_base.scss */
@@ -91,22 +86,21 @@ input[type='password'] {
 input[type='text']:focus,
 input[type='password']:focus {
   outline: 0;
-  color: #660066;
-  border-color: #660066;
 }
 
-/* line 42, sass/_base.scss */
+/* line 40, sass/_base.scss */
 input[type='button'] {
   height: 30px;
   width: 80px;
   background: transparent;
-  border: 2px solid white;
+  border: none;
   color: white;
   text-align: center;
-  font-family: monospace;
+  font-family: "Raleway";
+  font-size: 16px;
   display: inline-block;
 }
-/* line 52, sass/_base.scss */
+/* line 51, sass/_base.scss */
 input[type='button']:focus {
   outline: 0;
 }
@@ -122,7 +116,7 @@ input[type='button']:focus {
   width: 320px;
   position: relative;
   z-index: 1;
-  transition: all .25s;
+  transition: all 0.25s;
 }
 /* line 25, sass/login.scss */
 .create.hidden, .login.hidden {
@@ -167,37 +161,37 @@ input[type='button']:focus {
   line-height: 28px;
 }
 
-/* line 66, sass/login.scss */
+/* line 65, sass/login.scss */
 .create-button {
   text-align: right;
 }
 
-/* line 70, sass/login.scss */
+/* line 69, sass/login.scss */
 .label {
   height: 28px;
   line-height: 28px;
   margin: 0;
 }
 
-/* line 78, sass/login.scss */
+/* line 77, sass/login.scss */
 .hidden .input, .hidden
 .label {
   opacity: 0;
 }
-/* line 79, sass/login.scss */
+/* line 78, sass/login.scss */
 .transition .input, .transition
 .label {
   opacity: 1 !important;
 }
 
-/* line 83, sass/login.scss */
+/* line 82, sass/login.scss */
 input[type='text'],
 input[type='password'] {
   width: 60%;
   float: right;
 }
 
-/* line 88, sass/login.scss */
+/* line 87, sass/login.scss */
 .message {
   margin-top: 20px;
 }

@@ -17,7 +17,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class='frame'>\r\n\r\n  <div class='header'>\r\n    <h1 class='title'></h1>\r\n    <input type='button' class='logout' value='Logout'>\r\n  </div>\r\n\r\n  <div class='lobby'></div>\r\n\r\n  <div class='game'></div>\r\n  \r\n  <div class='chat'></div>\r\n\r\n</div>";
+  return "<div class='frame'>\r\n\r\n  <div class='header'>\r\n    <h1 class='title'></h1>\r\n    <!-- <input type='button' class='logout' value='Logout'> -->\r\n  </div>\r\n\r\n  <div class='lobby'></div>\r\n\r\n  <div class='game'></div>\r\n  \r\n  <div class='chat'></div>\r\n\r\n</div>";
   });
 
 this["JST"]["game"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -84,28 +84,6 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\r\n      ";
-  if (helper = helpers.nickaname) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.nickaname); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\r\n    ";
-  return buffer;
-  }
-
-function program3(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\r\n      ";
-  if (helper = helpers.username) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.username); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\r\n    ";
-  return buffer;
-  }
-
-function program5(depth0,data) {
-  
-  var buffer = "", stack1, helper;
   buffer += "\r\n    <p class='score'>Score: ";
   if (helper = helpers.score) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.score); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
@@ -114,16 +92,17 @@ function program5(depth0,data) {
   return buffer;
   }
 
-function program7(depth0,data) {
+function program3(depth0,data) {
   
   
-  return "\r\n    <input class='challenge' type='button' value='Challenge'>\r\n  ";
+  return "\r\n      <!-- <input class='challenge' type='button' value='Challenge'> -->\r\n  ";
   }
 
-  buffer += "<li class='user'>\r\n\r\n  <p class='name'>\r\n    ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.nickname), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n  </p>\r\n  \r\n  <p class='record'>W/L: ";
+  buffer += "<li class='user'>\r\n\r\n  <p class='username'>";
+  if (helper = helpers.username) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.username); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\r\n  \r\n  <p class='record'>";
   if (helper = helpers.wins) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.wins); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -131,8 +110,8 @@ function program7(depth0,data) {
   if (helper = helpers.losses) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.losses); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\r\n\r\n  ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.room), {hash:{},inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data});
+    + " (W/L)</p>\r\n\r\n  ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.room), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n  \r\n</li>";
   return buffer;

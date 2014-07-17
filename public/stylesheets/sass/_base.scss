@@ -34,8 +34,6 @@ input[type='password'] {
 
   &:focus {
     outline: 0;
-    color: $color-highlight;
-    border-color: $color-highlight;
   }
 }
 
@@ -43,10 +41,11 @@ input[type='button'] {
   height: 30px;
   width: 80px;
   background: transparent;
-  border: $default-border;
+  border: none;
   color: $color-primary;
   text-align: center;
   font-family: $default-font-stack;
+  font-size: $default-font-size;
   display: inline-block;
 
   &:focus { outline: 0; }

@@ -3,9 +3,12 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/base'
+  'views/base',
+  'views/lobby',
+  'views/chat',
+  'views/game'
 
-], function($, _, Backbone, _View) {
+], function($, _, Backbone, _View, Lobby, Chat, Game) {
   return _View.extend({
 
     el: 'body',
@@ -43,12 +46,11 @@ define([
       me.set('username', content.username);
       me.set('avail', true);
 
-      // Render subviews
-      require(['views/lobby', 'views/chat', 'views/game'], function(Lobby, Game, Chat) {
-        var lobby = new Lobby(),
-            chat = new Chat(),
-            game = new Game();
-      });
+
+      // Render all subviews
+      var lobby = new Lobby(),
+          chat = new Chat(),
+          game = new Game();
     },
 
     challengeResponse: function(content) {
