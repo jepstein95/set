@@ -6,8 +6,8 @@ require.config({
     handlebars: 'lib/handlebars/handlebars.min'
   },
   shim: {
-    handlebars: {
-      exports: 'handlebars'
+    'handlebars': {
+      exports: 'Handlebars'
     }
   }
 });
