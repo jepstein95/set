@@ -40,4 +40,6 @@ Thumbs.db
 ##################################
 bin
 node_modules
+public/javascripts/templates.js
+public/stylesheets/*.css
 .sass-cache
