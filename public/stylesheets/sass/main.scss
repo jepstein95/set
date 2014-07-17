@@ -1,0 +1,53 @@
+@import 'base';
+
+
+$cut-size: 20px;
+
+
+.frame {
+  @include container;
+  position: fixed;
+  left: 50%;
+  top: $default-padding;
+  bottom: $default-padding;
+  margin-left: -1 * ($blueprint-container-size / 2);
+}
+
+.lobby,
+.game,
+.chat {
+  display: inline-block;
+  color: $color-primary;
+  vertical-align: top;
+  height: 100%;
+  margin: 0;
+}
+
+.lobby {
+  @include column(5);
+}
+
+.game {
+  @include column(14);
+  @extend %content-well;
+}
+
+.chat {
+  @include column(5);
+  @include last;
+}
+
+.users,
+.messages {
+  @include scrollbar-vert;
+  background-color: transparent;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.user,
+.message {
+  @extend %content-well;
+  margin: 0 $blueprint-grid-margin 4px 0;
+}

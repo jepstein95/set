@@ -1,0 +1,19 @@
+<li class='user'>
+
+  <p class='name'>
+    {{#if nickname}}
+      {{nickaname}}
+    {{else}}
+      {{username}}
+    {{/if}}
+  </p>
+  
+  <p class='record'>W/L: {{wins}}/{{losses}}</p>
+
+  {{#if room}}
+    <p class='score'>Score: {{score}}</p>
+  {{else}}
+    <input class='challenge' type='button' value='Challenge'>
+  {{/if}}
+  
+</li>

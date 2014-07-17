@@ -1,25 +1,36 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
+  "name": "set",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "express": "~3.4.8",
-    "underscore": "1.6.x",
     "backbone": "1.1.x",
-    "mysql": "2.x.x",
-    "static-favicon": "~1.0.0",
-    "morgan": "~1.0.0",
-    "cookie-parser": "~1.0.1",
     "body-parser": "~1.0.0",
-    "debug": "~0.7.4",
-    "jade": "~1.3.0",
-    "stylus": "0.42.3",
+    "compass": "0.1.0",
     "connect": "2.x",
     "cookie": "0.1.1",
+    "cookie-parser": "~1.0.1",
+    "debug": "~0.7.4",
+    "ejs": "~0.7.1",
+    "express": "~3.4.8",
+    "handlebars": "^2.0.0-alpha.4",
+    "jade": "~1.3.0",
+    "morgan": "~1.0.0",
+    "mysql": "2.x.x",
     "password-hash": "*",
-    "sanitizer": "*"
+    "sanitizer": "*",
+    "socket.io": "0.9.16",
+    "static-favicon": "~1.0.0",
+    "stylus": "0.42.3",
+    "underscore": "1.6.x"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-compass": "^0.9.0",
+    "grunt-contrib-handlebars": "^0.8.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-exec": "^0.4.5"
   }
 }

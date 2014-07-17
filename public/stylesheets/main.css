@@ -1,0 +1,146 @@
+/* line 30, sass/_skin.scss */
+.game, .user,
+.message {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+}
+
+/* line 4, sass/_base.scss */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 8, sass/_base.scss */
+body {
+  color: white;
+  background-image: url(/../images/binding_dark.png);
+  font-family: monospace;
+}
+
+/* line 14, sass/_base.scss */
+h1, h2, h3, h4, h5 {
+  color: white;
+}
+
+/* line 18, sass/_base.scss */
+p {
+  display: inline-block;
+  margin: 10px 0;
+}
+
+/* line 23, sass/_base.scss */
+ul {
+  list-style-type: none;
+}
+
+/* line 28, sass/_base.scss */
+input[type='text'],
+input[type='password'] {
+  padding: 4px;
+  margin: 0;
+  border: 2px solid white;
+  background-color: transparent;
+  color: white;
+}
+/* line 35, sass/_base.scss */
+input[type='text']:focus,
+input[type='password']:focus {
+  outline: 0;
+  color: #660066;
+  border-color: #660066;
+}
+
+/* line 42, sass/_base.scss */
+input[type='button'] {
+  height: 30px;
+  width: 80px;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  text-align: center;
+  font-family: monospace;
+  display: inline-block;
+}
+/* line 52, sass/_base.scss */
+input[type='button']:focus {
+  outline: 0;
+}
+
+/* line 7, sass/main.scss */
+.frame {
+  width: 950px;
+  margin: 0 auto;
+  overflow: hidden;
+  *zoom: 1;
+  position: fixed;
+  left: 50%;
+  top: 10px;
+  bottom: 10px;
+  margin-left: -475px;
+}
+
+/* line 18, sass/main.scss */
+.lobby,
+.game,
+.chat {
+  display: inline-block;
+  color: white;
+  vertical-align: top;
+  height: 100%;
+  margin: 0;
+}
+
+/* line 26, sass/main.scss */
+.lobby {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 190px;
+}
+/* line 147, ../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .lobby {
+  overflow-x: hidden;
+}
+
+/* line 30, sass/main.scss */
+.game {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 550px;
+}
+/* line 147, ../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .game {
+  overflow-x: hidden;
+}
+
+/* line 35, sass/main.scss */
+.chat {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 190px;
+  margin-right: 0;
+}
+/* line 147, ../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .chat {
+  overflow-x: hidden;
+}
+
+/* line 41, sass/main.scss */
+.users,
+.messages {
+  overflow-y: scroll;
+  background-color: transparent;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 50, sass/main.scss */
+.user,
+.message {
+  margin: 0 10px 4px 0;
+}

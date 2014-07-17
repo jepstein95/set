@@ -1,0 +1,53 @@
+@import 'skin';
+
+
+*, *:before, *:after {
+  @include box-sizing(border-box);
+}
+
+body {
+  color: $color-primary;
+  background-image: url(/../images/binding_dark.png);
+  font-family: $default-font-stack;
+}
+
+h1, h2, h3, h4, h5 {
+  color: $color-primary;
+}
+
+p {
+  display: inline-block;
+  margin: $default-margin;
+}
+
+ul {
+  list-style-type: none;
+}
+
+input[type='text'],
+input[type='password'] {
+  padding: 4px;
+  margin: 0;
+  border: $default-border;
+  background-color: transparent;
+  color: $color-primary;
+
+  &:focus {
+    outline: 0;
+    color: $color-highlight;
+    border-color: $color-highlight;
+  }
+}
+
+input[type='button'] {
+  height: 30px;
+  width: 80px;
+  background: transparent;
+  border: $default-border;
+  color: $color-primary;
+  text-align: center;
+  font-family: $default-font-stack;
+  display: inline-block;
+
+  &:focus { outline: 0; }
+}

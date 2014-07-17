@@ -1,0 +1,70 @@
+@import 'compass/css3';
+@import 'blueprint';
+
+$color-set-red:               #cc0000;
+$color-set-green:             #009933;
+$color-set-purple:            #660066;
+
+$color-grayscale-lightest:    #333333;
+$color-grayscale-light:       #666666;
+$color-grayscale-dark:        #999999;
+
+$color-grayscale-select:      rgba(102,102,102,.5); // grayscale-light
+
+$color-primary:               #fff;
+$color-highlight:             $color-set-purple;
+
+$default-font-stack:          monospace;
+
+$default-padding:             10px;
+$default-border:              2px solid $color-primary;
+$default-margin:              10px 0;
+
+
+%page-center {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+%content-well {
+  background-color: rgba(0,0,0,.5);
+  padding: $default-padding;
+}
+
+%clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+%hover-state-gray {
+  &:hover {
+    background-color: $color-grayscale-select;
+  }
+}
+
+%focus-state-gray {
+  &:focus {
+    background-color: $color-grayscale-select;
+  }
+}
+
+%hover-state-highlight {
+  &:hover {
+    color: $color-highlight;
+  }
+}
+
+@function content-size($size, $padding) {
+  @return ( $size - 2 * $padding );
+}
+
+
+@mixin scrollbar-vert {
+  overflow-y: scroll;
+}
