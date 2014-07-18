@@ -25,21 +25,31 @@ define([
     picked: [],
 
     events: {
-      'click .set':   'setCall',
-      'click .leave': 'leave'
+      'click .new':     'newGame',
+      'click .set':     'setCall',
+      'click .leave':   'leave'
     },
 
     listeners: {
-      'join-room':            'joinRoom',
-      'leave':                'leave',
-      'start-game':           'startGame',
-      'set-call-response':    'setCallResponse',
-      'set-pick-response':    'setPickResponse'
+      'join-room':              'joinRoom',
+      'leave':                  'leave',
+      'start-game':             'startGame',
+      'set-call-response':      'setCallResponse',
+      'set-pick-response':      'setPickResponse'
     },
 
     initialize: function() {
       this.cards = new Cards(null, { view: this });
       _View.prototype.initialize.apply(this);
+    },
+
+    newGame: function() {
+      api.once('request-users-response', function(content) {
+        var data = { users: content };
+        var popup = this.renderTemplate('game/invite', data);
+        this.$el.append(popup);
+      }, this);
+      api.trigger('request-users', {});
     },
 
     addCardLi: function(model) {

@@ -1,0 +1,14 @@
+<div class='popup invite'>
+  
+  {{#each users}}
+    <input type='checkbox' class='user' val='{{this}}'>{{this}}
+  {{else}}
+    <p class='empty'>No users</p><
+    <input type='button' class='ok' value='Ok'>
+  {{/each}}
+
+  {{#if users}}
+    <input type='button' class='invite-button' value='Invite'>
+  {{/if}}
+
+</div>

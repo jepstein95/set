@@ -18,10 +18,20 @@ $color-highlight:             $color-set-purple;
 $default-font-stack:          "Raleway";
 $default-font-size:           16px;
 
-$default-padding:             10px;
+$default-padding:             $blueprint-grid-margin;
 $default-border:              2px solid $color-primary;
-$default-margin:              10px 0;
+$default-margin:              $blueprint-grid-margin 0;
 
+
+%clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
 
 %page-center {
   display: table;
@@ -32,16 +42,6 @@ $default-margin:              10px 0;
 %content-well {
   background-color: rgba(0,0,0,.5);
   padding: $default-padding;
-}
-
-%clearfix {
-  *zoom: 1;
-  &:before,
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
 }
 
 %hover-state-gray {
@@ -66,6 +66,9 @@ $default-margin:              10px 0;
   @return ( $size - 2 * $padding );
 }
 
+@mixin box-shadow {
+  box-shadow: 4px 4px rgba(0,0,0,.5);
+}
 
 @mixin scrollbar-vert {
   overflow-y: scroll;

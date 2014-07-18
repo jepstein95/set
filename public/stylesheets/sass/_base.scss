@@ -13,6 +13,7 @@ body {
 
 h1, h2, h3, h4, h5 {
   color: $color-primary;
+  margin: 0;
 }
 
 p {
@@ -39,7 +40,6 @@ input[type='password'] {
 
 input[type='button'] {
   height: 30px;
-  width: 80px;
   background: transparent;
   border: none;
   color: $color-primary;
@@ -49,4 +49,6 @@ input[type='button'] {
   display: inline-block;
 
   &:focus { outline: 0; }
+
+  @extend %hover-state-gray;
 }

@@ -17,7 +17,8 @@ define([
     template: 'lobby',
 
     listeners: {
-      'get-users-response': 'getUsersResponse' 
+      'get-users-response': 'getUsersResponse',
+      'request-users':      'usersRequest' 
     },
     
     initialize: function() {
@@ -52,10 +53,20 @@ define([
           var nickname = content.nicknames[i];
           var wins = content.wins[i];
           var losses = content.losses[i];
-          this.users.add(new User({ username: user, nickname: nickname, wins: wins, losses: losses }));
+          this.users.add(new User({
+            username: user,
+            nickname: nickname,
+            wins: wins,
+            losses: losses
+          }));
         }
       }
     },
+
+    usersRequest: function() {
+      var usernames = this.users.pluck('username');
+      api.trigger('request-users-response', usernames);
+    }
   });
 
 });

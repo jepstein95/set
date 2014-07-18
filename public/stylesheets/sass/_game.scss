@@ -1,0 +1,23 @@
+.game {
+  
+  .info {
+    display: block;
+    padding: $default-padding;
+
+    .buttons {
+      display: inline-block;
+      float: right;
+
+      .set,
+      .leave { display: none; }
+      .new { display: inline-block; }
+
+      &.in-room {
+        .set,
+        .leave { display: inline-block; }
+        .new { display: none; }
+      }
+
+    }
+  }
+}

@@ -17,6 +17,10 @@ define([
 
     template: 'frame',
 
+    events: {
+      'focusout .popup':  'removePopup'
+    },
+
     listeners: {
       'connect-response':  'connectResponse'
     },
@@ -34,6 +38,11 @@ define([
           lobby = new Lobby(),
           chat = new Chat(),
           game = new Game();
+    },
+
+    removePopup: function(e) {
+      alert('blur');
+      this.$el.remove(e.target);
     }
     
   });
