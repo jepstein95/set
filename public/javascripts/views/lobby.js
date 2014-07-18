@@ -9,6 +9,7 @@ define([
   'models/user'
 
 ], function($, _, Backbone, require, _View, Users, User) {
+  
   return _View.extend({
 
     el: '.lobby',
@@ -56,4 +57,5 @@ define([
       }
     },
   });
+
 });

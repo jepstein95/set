@@ -8,6 +8,7 @@ define([
   'models/message'
 
 ], function($, _, Backbone, _View, Messages, Message) {
+  
   return _View.extend({
 
     el: '.chat',
@@ -21,36 +22,23 @@ define([
     listeners: {
       'join-room':              'joinRoom',
       'leave':                  'leave',
-      'chat-messgae-response':  'chatMsgResponse'
+      'chat-message-response':  'chatMsgResponse'
     },
 
     initialize: function() {
-      this.messages = new Messages(null, { view: this });
       _View.prototype.initialize.apply(this);
+      this.messages = new Messages(null, { view: this });
     },
 
     addMsgLi: function(model) {
-      //var messsages = $('.messages');
-      //var li = $('<li>');
-      //var name = $('<b>');  
-      //if (model.get('nickname') != '')
-      //  $(name).text(model.get('username') + '(' + model.get('nickname') + '):');
-      //else
-      //  $(name).text(model.get('username') + ':');
-      //var msg = $('<p>');
-      //$(msg).text(model.get('message'));
-      //$(li).append(name);
-      //$(li).append(msg);
-      //$(messages).append(li);
-      var template = this.templatePath('chat/message.html');
-      require([template], function(html) {
-        var li = _.template(html, {
-          username: model.get('username'),
-          nickname: model.get('nickname'),
-          message: model.get('message')
-        });
-        $('.messages').append(li);
-      });
+      var data = {
+        username: model.get('username'),
+        nickname: model.get('nickname'),
+        message: model.get('message')
+      };
+
+      var msg = this.renderTemplate('message', data);
+      $('.messages').append(msg);
     },
 
     resetMsgList: function(model) {
@@ -60,11 +48,20 @@ define([
     submitMsg: function() {
       var message = $('.chat-msg').val();
       $('.chat-msg').val('');
-      api.emit('chat-message', { room: me.get('room'), username: me.get('username'), nickname: me.get('nickname'), message: message });
+      api.emit('chat-message', {
+        room: me.get('room'),
+        username: me.get('username'),
+        nickname: me.get('nickname'),
+        message: message
+      });
     },
 
     chatMsgResponse: function(content) {
-      this.messages.add(new Message({ username: content.username, nickname: content.nickname, message: content.message }));
+      this.messages.add(new Message({
+        username: content.username,
+        nickname: content.nickname,
+        message: content.message
+      }));
     },
 
     joinRoom: function() {
@@ -75,4 +72,5 @@ define([
       this.resetMsgList();
     }
   });
+
 });

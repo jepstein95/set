@@ -6,6 +6,7 @@ define([
   'views/base'
 
 ], function($, _, Backbone, _View) {
+  
   return _View.extend({
 
     el: '.header',
@@ -28,4 +29,5 @@ define([
     }
 
   });
+  
 });

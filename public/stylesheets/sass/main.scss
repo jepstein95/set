@@ -46,15 +46,24 @@ $cut-size: 20px;
   margin: 0;
 }
 
+.messages {
+  margin-bottom: 30px;
+}
+
 .user,
 .message {
   @extend %content-well;
-  margin: 0 $blueprint-grid-margin 4px 0;
+  margin: 0 0 $blueprint-grid-margin 0;
 }
 
 .user {
+  margin-right: $blueprint-grid-margin;
   .username,
   .record {
-    @extend %clearfix;
+    //display: block;
   }
+}
+
+.message {
+  margin-left: $blueprint-grid-margin;
 }

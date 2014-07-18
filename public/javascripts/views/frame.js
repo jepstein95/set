@@ -10,6 +10,7 @@ define([
   'views/game'
 
 ], function($, _, Backbone, _View, Header, Lobby, Chat, Game) {
+  
   return _View.extend({
 
     el: 'body',
@@ -36,4 +37,5 @@ define([
     }
     
   });
+  
 });

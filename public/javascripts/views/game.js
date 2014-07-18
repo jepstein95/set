@@ -8,6 +8,7 @@ define([
   'models/card'
 
 ], function($, _, Backbone, _View, Cards, Card) {
+  
   return _View.extend({
 
     el: '.game',
@@ -137,6 +138,7 @@ define([
       me.set('room', null);
       me.set('avail', true);
     }
-    
+
   });
+
 });
