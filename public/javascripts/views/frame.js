@@ -18,11 +18,12 @@ define([
     template: 'frame',
 
     events: {
-      'focusout .popup':  'removePopup'
+      'click .popup':     'stopPropagation'
     },
 
     listeners: {
-      'connect-response':  'connectResponse'
+      'connect-response':  'connectResponse',
+      'register-popup':    'registerPopup'
     },
 
     initialize: function () {
@@ -40,9 +41,14 @@ define([
           game = new Game();
     },
 
-    removePopup: function(e) {
-      alert('blur');
-      this.$el.remove(e.target);
+    stopPropagation: function(e) {
+      e.stopPropagation();
+    },
+
+    registerPopup: function() {
+      $('body').one('click', function() {
+        $('.popup').remove();
+      });
     }
     
   });

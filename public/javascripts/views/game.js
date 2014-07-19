@@ -44,12 +44,18 @@ define([
     },
 
     newGame: function() {
-      api.once('request-users-response', function(content) {
-        var data = { users: content };
-        var popup = this.renderTemplate('game/invite', data);
-        this.$el.append(popup);
-      }, this);
-      api.trigger('request-users', {});
+      api.emit('new-game', {
+        username: me.get('username'),
+        room: me.get('username')
+      });
+
+      // DONT FORGET TO RE-RENDER TEMPLATE!!!!
+
+      //api.once('request-users-response', function(content) {
+      //  var popup = this.renderTemplate('game/invite', { users: content });
+      //  this.$el.append(popup);
+      //}, this);
+      //api.trigger('request-users', {});
     },
 
     addCardLi: function(model) {

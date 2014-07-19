@@ -1,8 +1,10 @@
 .popup {
   @extend %page-center;
+  @extend %content-well;
   @include box-shadow;
   background-color: $color-grayscale-select;
-  width: 100px;
+  width: 200px;
+  z-index: 1;
 
   &.invite {
     .invite-button { display: block; }

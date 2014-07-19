@@ -9,6 +9,7 @@ define([
     username: null,
     nickname: null,
     wins: null,
-    losses: null
+    losses: null,
+    room: null
   });
 });

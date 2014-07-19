@@ -4,10 +4,10 @@
   
   <p class='record'>{{wins}}/{{losses}} (W/L)</p>
 
-  {{#if room}}
+  {{#if myRoom}}
     <p class='score'>Score: {{score}}</p>
   {{else}}
-      <!-- <input class='challenge' type='button' value='Challenge'> -->
+    <p class='room'>{{room}}</p>
   {{/if}}
   
 </li>

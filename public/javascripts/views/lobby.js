@@ -33,7 +33,8 @@ define([
         nickname: model.get('nickname'),
         wins: model.get('wins'),
         losses: model.get('losses'),
-        room: me.get('room'),
+        room: model.get('room'),
+        myRoom: me.get('room'),
         score: 0
       };
       
@@ -46,21 +47,26 @@ define([
     },
 
     getUsersResponse: function(content) {
+      //for (var i = 0; i < content.usernames.length; i++) {
+      //  var user = content.usernames[i];
+      //  if (user != '' && user != me.get('username')) {
+      //    var nickname = content.nicknames[i];
+      //    var wins = content.wins[i];
+      //    var losses = content.losses[i];
+      //    this.users.add(new User({
+      //      username: user,
+      //      nickname: nickname,
+      //      wins: wins,
+      //      losses: losses
+      //    }));
+      //  }
+      //}
+      var self = this;
       this.users.reset();
-      for (var i = 0; i < content.usernames.length; i++) {
-        var user = content.usernames[i];
-        if (user != '' && user != me.get('username')) {
-          var nickname = content.nicknames[i];
-          var wins = content.wins[i];
-          var losses = content.losses[i];
-          this.users.add(new User({
-            username: user,
-            nickname: nickname,
-            wins: wins,
-            losses: losses
-          }));
-        }
-      }
+      _.each(content.users, function(user) {
+        if (user.username != me.get('username'))
+          self.users.add(new User(user));
+      });
     },
 
     usersRequest: function() {

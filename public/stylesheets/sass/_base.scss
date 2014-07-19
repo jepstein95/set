@@ -3,6 +3,7 @@
 
 *, *:before, *:after {
   @include box-sizing(border-box);
+  outline: none;
 }
 
 body {
@@ -32,10 +33,6 @@ input[type='password'] {
   border: $default-border;
   background-color: transparent;
   color: $color-primary;
-
-  &:focus {
-    outline: 0;
-  }
 }
 
 input[type='button'] {
@@ -47,8 +44,6 @@ input[type='button'] {
   font-family: $default-font-stack;
   font-size: $default-font-size;
   display: inline-block;
-
-  &:focus { outline: 0; }
 
   @extend %hover-state-gray;
 }
