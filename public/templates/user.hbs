@@ -1,19 +1,25 @@
 <li class='user'>
 
   <p class='username'>{{username}}</p>
-  
-  <p class='record'>{{wins}}/{{losses}} (W/L)</p>
 
-  {{#if myRoom}}
+  {{#if room}}  <!-- In a room -->
 
-    <p class='score'>Score: {{score}}</p>
+    {{#if myRoom}} <!-- In my room -->
 
-  {{else}}
+      <p class='score'>Score: {{score}}</p>
 
-    <p class='room'>in game "{{room}}"
-      <input type='button' class='join' name='{{room}}' value='Join'>
-    </p>
-    
+    {{else}}  <!-- In a room, but not mine -->
+
+      <p class='room'>in game "{{room}}"
+        <input type='button' class='join' name='{{room}}' value='Join'>
+      </p>
+
+    {{/if}}
+
+  {{else}}  <!-- Not in a room -->
+
+    <p class='record'>{{wins}}/{{losses}} (W/L)</p>
+
   {{/if}}
   
 </li>

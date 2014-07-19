@@ -1,9 +1,10 @@
 .user {
   margin-right: $blueprint-grid-margin;
-  .username,
-  .record {
-    //display: block;
-  }
+
+  .room,
+  .score,
+  .record,
+  .username { display: block; }
 
   .room {
     .join {

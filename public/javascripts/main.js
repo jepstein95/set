@@ -34,7 +34,7 @@ require([
         ioEvents = [
           'connect-response',
           'get-users-response',
-          'start-game',
+          'start-game-response',
           'set-call-response',
           'set-pick-response',
           'chat-message-response',

@@ -15,43 +15,41 @@ define([
 
     template: 'game',
 
-    colors: ['Red', 'Green', 'Blue'],
-    numbers: [1, 2, 3],
-    shapes: ['Ovals', 'Diamonds', 'Squiggles'],
-    fills: ['Open', 'Shaded', 'Filled'],
-
     timer: null,
     canPick: false,
     picked: [],
 
     events: {
-      'click .new':     'newGame',
-      'click .set':     'setCall',
-      'click .leave':   'leave'
+      'click .new':       'newGame',
+      'click .start':     'startGame',
+      'click .set':       'setCall',
+      'click .leave':     'leave'
     },
 
     listeners: {
       'join-room':              'joinRoom',
       'leave':                  'leave',
-      'start-game':             'startGame',
       'join-game':              'joinGame',
+      'start-game-response':    'startGameResponse',
       'set-call-response':      'setCallResponse',
       'set-pick-response':      'setPickResponse'
     },
 
     initialize: function() {
-      this.cards = new Cards(null, { view: this });
       _View.prototype.initialize.apply(this);
+
+      this.cards = new Cards(null, { view: this });
     },
 
     newGame: function() {
-      me.set('room', me.get('username'));
+      var room = me.get('username');
+      me.set('room', room);
       api.emit('new-game', {
         username: me.get('username'),
         room: me.get('username')
       });
 
-      this.render({ room: me.get('username') });
+      this.render({ room: room });
 
       //api.once('request-users-response', function(content) {
       //  var popup = this.renderTemplate('game/invite', { users: content });
@@ -66,9 +64,34 @@ define([
         username: me.get('username'),
         room: room
       });
+
+      this.render({room: me.get('room') });
+    },
+
+    startGame: function() {
+      api.emit('start-game', me.get('room'));
+    },
+
+    startGameResponse: function(content) {
+      var self = this;
+      this.render({ room: me.get('room'), started: true });
+      _.each(content.cards, function(card) {
+        self.cards.add(new Card({
+          number: card[0],
+          color: card[1],
+          fill: card[2],
+          shape: card[3]
+        }));
+      });
     },
 
     addCardLi: function(model) {
+
+      var colors = ['Red', 'Green', 'Blue'],
+          numbers = [1, 2, 3],
+          shapes = ['Ovals', 'Diamonds', 'Squiggles'],
+          fills = ['Open', 'Shaded', 'Filled'];
+          
       var number = numbers[model.get('number')];
       var color = colors[model.get('color')];
       var shape = shapes[model.get('shape')];
@@ -117,10 +140,6 @@ define([
       $('.stack1').empty();
       $('.stack2').empty();
       $('.stack3').empty();
-    },
-
-    joinRoom: function() {
-      $('.room').css('visibility', 'visible');
     },
 
     setCall: function(room, username) {

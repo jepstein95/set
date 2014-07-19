@@ -7,5 +7,17 @@
     p { float: left; }
     input[type=button] { float: right; }
   }
+
+  .stack {
+    @include column(4);
+    &.stack3 { @include last; }
+  
+    padding: 0;
+  }
+
+  .card-img {
+    height: 30px;
+    width: 60px;
+  }
   
 }
