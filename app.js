@@ -41,7 +41,7 @@ if ('development' == app.get('env')) {
 
 // DEVELOPMENT
 var added = 0;
-var logins = [ "josh", "babou", "jorge" ];
+var logins = [ "josh", "babou", "jorge", "beaver", "nadie" ];
 
 // TODO: HANDLE CASE WHERE USER HAS MULTIPLE TABS OPEN
 function restrict(req, res, next) {

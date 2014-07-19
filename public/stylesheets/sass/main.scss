@@ -1,5 +1,6 @@
 @import 'base';
 @import 'game';
+@import 'lobby';
 @import 'popup';
 
 
@@ -67,14 +68,6 @@ $cut-size: 20px;
 .message {
   @extend %content-well;
   margin: 0 0 $blueprint-grid-margin 0;
-}
-
-.user {
-  margin-right: $blueprint-grid-margin;
-  .username,
-  .record {
-    //display: block;
-  }
 }
 
 .message,

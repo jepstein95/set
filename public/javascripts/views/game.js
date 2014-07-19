@@ -34,6 +34,7 @@ define([
       'join-room':              'joinRoom',
       'leave':                  'leave',
       'start-game':             'startGame',
+      'join-game':              'joinGame',
       'set-call-response':      'setCallResponse',
       'set-pick-response':      'setPickResponse'
     },
@@ -44,6 +45,7 @@ define([
     },
 
     newGame: function() {
+      me.set('room', me.get('username'));
       api.emit('new-game', {
         username: me.get('username'),
         room: me.get('username')
@@ -56,6 +58,14 @@ define([
       //  this.$el.append(popup);
       //}, this);
       //api.trigger('request-users', {});
+    },
+
+    joinGame: function(room) {
+      me.set('room', room);
+      api.emit('join-game', {
+        username: me.get('username'),
+        room: room
+      });
     },
 
     addCardLi: function(model) {

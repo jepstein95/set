@@ -1,0 +1,15 @@
+.user {
+  margin-right: $blueprint-grid-margin;
+  .username,
+  .record {
+    //display: block;
+  }
+
+  .room {
+    .join {
+      display: none;
+
+      &.visible { display: inline-block; }
+    }
+  }
+}

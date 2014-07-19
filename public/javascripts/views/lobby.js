@@ -16,6 +16,12 @@ define([
 
     template: 'lobby',
 
+    events: {
+      'mouseover .room':    'showJoin',
+      'mouseleave .room':   'hideJoin',
+      'click .join':        'joinGame'
+    },
+
     listeners: {
       'get-users-response': 'getUsersResponse',
       'request-users':      'usersRequest' 
@@ -63,10 +69,31 @@ define([
       //}
       var self = this;
       this.users.reset();
-      _.each(content.users, function(user) {
-        if (user.username != me.get('username'))
-          self.users.add(new User(user));
-      });
+
+      if (me.get('room')) {
+        _.each(content.users, function(user) {
+          if (user.room == me.get('room'))
+            self.users.add(new User(user));
+        });
+      } else {
+        _.each(content.users, function(user) {
+          if (user.username != me.get('username'))
+            self.users.add(new User(user));
+        });
+      }
+    },
+
+    showJoin: function(e) {
+      $(e.target).find('.join').addClass('visible');
+    },
+
+    hideJoin: function(e) {
+      $(e.target).find('.join').removeClass('visible');
+    },
+
+    joinGame: function(e) {
+      var room = $(e.target).attr('name');
+      api.trigger('join-game', room);
     },
 
     usersRequest: function() {

@@ -5,9 +5,15 @@
   <p class='record'>{{wins}}/{{losses}} (W/L)</p>
 
   {{#if myRoom}}
+
     <p class='score'>Score: {{score}}</p>
+
   {{else}}
-    <p class='room'>{{room}}</p>
+
+    <p class='room'>in game "{{room}}"
+      <input type='button' class='join' name='{{room}}' value='Join'>
+    </p>
+    
   {{/if}}
   
 </li>
