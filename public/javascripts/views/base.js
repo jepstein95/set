@@ -19,8 +19,9 @@ define([
       });
     },
 
-    render: function() {
-      var div = this.renderTemplate(this.template, {});
+    render: function(data) {
+      var div = this.renderTemplate(this.template, data);
+      this.$el.empty();
       this.$el.append(div);
     },
 

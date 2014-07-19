@@ -1,9 +1,11 @@
 .game {
   
   .info {
-    display: block;
+    width: 100%;
     padding: $default-padding;
-    float: right;
+
+    p { float: left; }
+    input[type=button] { float: right; }
   }
   
 }

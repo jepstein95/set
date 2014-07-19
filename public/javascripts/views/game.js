@@ -49,7 +49,7 @@ define([
         room: me.get('username')
       });
 
-      // DONT FORGET TO RE-RENDER TEMPLATE!!!!
+      this.render({ room: me.get('username') });
 
       //api.once('request-users-response', function(content) {
       //  var popup = this.renderTemplate('game/invite', { users: content });
