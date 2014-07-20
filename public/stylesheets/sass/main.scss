@@ -1,5 +1,6 @@
 @import 'base';
 @import 'game';
+@import 'chat';
 @import 'lobby';
 @import 'popup';
 
@@ -51,8 +52,7 @@ $cut-size: 20px;
   @include last;
 }
 
-.users,
-.messages {
+.users {
   @include scrollbar-vert;
   background-color: transparent;
   height: 100%;
@@ -60,17 +60,8 @@ $cut-size: 20px;
   margin: 0;
 }
 
-.messages {
-  margin-bottom: 30px;
-}
-
 .user,
 .message {
   @extend %content-well;
   margin: 0 0 $blueprint-grid-margin 0;
-}
-
-.message,
-.new-msg {
-  margin-left: $blueprint-grid-margin;
 }

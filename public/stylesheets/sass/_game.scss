@@ -2,7 +2,7 @@
   
   .info {
     width: 100%;
-    padding: $default-padding;
+    display: inline-block;
 
     p { float: left; }
     input[type=button] { float: right; }
