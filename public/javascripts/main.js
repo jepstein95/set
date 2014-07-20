@@ -37,9 +37,8 @@ require([
           'start-game-response',
           'set-call-response',
           'set-pick-response',
-          'chat-message-response',
-          'challenge-response',
-          'challenged'
+          'game-info',
+          'chat-message-response'
         ],
 
         socket = io.connect();

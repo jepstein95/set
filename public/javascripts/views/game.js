@@ -32,7 +32,8 @@ define([
       'join-game':              'joinGame',
       'start-game-response':    'startGameResponse',
       'set-call-response':      'setCallResponse',
-      'set-pick-response':      'setPickResponse'
+      'set-pick-response':      'setPickResponse',
+      'game-info':              'updateGame'
     },
 
     initialize: function() {
@@ -65,16 +66,28 @@ define([
         room: room
       });
 
-      this.render({room: me.get('room') });
+      this.render({ room: me.get('room') });
     },
 
     startGame: function() {
-      api.emit('start-game', me.get('room'));
+      api.emit('start-game', { room: me.get('room') });
     },
 
     startGameResponse: function(content) {
       var self = this;
       this.render({ room: me.get('room'), started: true });
+      _.each(content.cards, function(card) {
+        self.cards.add(new Card({
+          number: card[0],
+          color: card[1],
+          fill: card[2],
+          shape: card[3]
+        }));
+      });
+    },
+
+    updateGame: function(content) {
+      var self = this;
       _.each(content.cards, function(card) {
         self.cards.add(new Card({
           number: card[0],
@@ -91,7 +104,7 @@ define([
           numbers = [1, 2, 3],
           shapes = ['Ovals', 'Diamonds', 'Squiggles'],
           fills = ['Open', 'Shaded', 'Filled'];
-          
+
       var number = numbers[model.get('number')];
       var color = colors[model.get('color')];
       var shape = shapes[model.get('shape')];

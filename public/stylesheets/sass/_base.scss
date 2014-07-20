@@ -1,10 +1,13 @@
 @import 'skin';
 
+@include establish-baseline;
 
 *, *:before, *:after {
   @include box-sizing(border-box);
   outline: none;
 }
+
+html { @include adjust-leading-to(4) }
 
 body {
   color: $color-primary;
@@ -17,9 +20,17 @@ h1, h2, h3, h4, h5 {
   margin: 0;
 }
 
+h1 {
+  height: rhythm(5);
+  @include adjust-font-size-to(24px);
+  @include rhythm(.5, 0, 0, .5, 24px);
+}
+
 p {
-  display: inline-block;
-  margin: $default-margin;
+  @include adjust-font-size-to(16px);
+  @include rhythm(.5, 0, 0, .5, 16px);
+
+  &.label { display: inline-block; }
 }
 
 ul {
@@ -28,22 +39,23 @@ ul {
 
 input[type='text'],
 input[type='password'] {
-  padding: 4px;
-  margin: 0;
-  border: $default-border;
+  @include adjust-font-size-to(12px);
+  padding-left: $default-padding;
+  border-color: $color-primary;
   background-color: transparent;
   color: $color-primary;
 }
 
 input[type='button'] {
-  height: 30px;
   background: transparent;
-  border: none;
+  display: inline-block;
+  height: rhythm(4);
   color: $color-primary;
   text-align: center;
   font-family: $default-font-stack;
-  font-size: $default-font-size;
-  display: inline-block;
+  @include adjust-font-size-to(16px);
+  @include rhythm(.5, 0, 0, .5, 16px);
+  border: none;
 
   @extend %hover-state-gray;
 }
