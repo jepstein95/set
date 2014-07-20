@@ -36,7 +36,10 @@ ul {
 
 input[type='text'],
 input[type='password'] {
-  @include adjust-font-size-to(12px);
+  @include adjust-font-size-to(16px, 3);
+  @include rhythm(0, 1, 1, 0, 16px);
+  @include leading-border(2px, 1);
+  @include trailing-border(2px, 1);
   padding-left: $default-padding / 2;
   border-color: $color-primary;
   background-color: transparent;
@@ -44,15 +47,11 @@ input[type='password'] {
 }
 
 input[type='button'] {
-  background: transparent;
-  display: inline-block;
-  height: rhythm(4);
-  color: $color-primary;
-  text-align: center;
-  font-family: $default-font-stack;
-  @include adjust-font-size-to(16px);
-  @include rhythm(.5, 0, 0, .5, 16px);
+  @include adjust-font-size-to(16px, 3);
+  @include rhythm(0, 1, 1, 0, 16px);
   border: none;
+  background-color: transparent;
+  color: $color-primary;
 
   @extend %hover-state-gray;
 }
