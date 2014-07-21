@@ -168,20 +168,24 @@ define([
         api.emit('card-selected', {
           username: me.get('username'),
           room: me.get('room'),
-          card: $(e.target).attr('id').split(' ')
+          card: $(e.target).attr('id').split('').splice(1,4)
         });
       }
     },
 
     cardSelected: function(content) {
-      var id = '#' + content.card.join(' ');
+      var id = '#a' + content.card.join('');
       $(id).addClass('selected');
     },
 
-    setPickResponse: function(content) {
+    setPickResponse: function(content) {      
+      _.delay(function() {
+        $('.selected').removeClass('selected');
+      }, 1000);
       
       if (content.username == me.get('username')) {
         window.clearTimeout(this.timer);
+        this.timer = null;
         this.canPick = false;
       }
 
@@ -233,9 +237,8 @@ define([
         model.get('fill'),
         model.get('shape')
       ];
-      return card.join(' ');
+      return 'a' + card.join('');
     }
-
   });
 
 });
