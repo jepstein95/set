@@ -1,0 +1,17 @@
+.chat {
+
+  .messages {
+    @include scrollbar-vert;
+    background-color: transparent;
+    height: 100%;
+    padding: 0 0 rhythm(9) 0;
+    margin: 0;
+  }
+
+  .new-msg{
+    padding: $default-padding 0;
+    .chat-msg { width: 70%; }
+    .submit-msg { margin-right: 0; }
+  }
+
+}
