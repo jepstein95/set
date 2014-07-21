@@ -7,8 +7,6 @@
   outline: none;
 }
 
-html { @include adjust-leading-to(4) }
-
 body {
   color: $color-primary;
   background-image: url(/../images/binding_dark.png);

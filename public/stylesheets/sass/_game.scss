@@ -1,7 +1,12 @@
-$card-width:      184px;
-$card-height:     (16  / 25) * $card-width;
-$pip-width:       (5.5 / 25) * $card-width;
-$pip-height:      (11  / 25) * $card-width;
+$border-width:    2px;
+
+$base-width:      176px;
+$base-height:     $base-width * (16  / 25);
+$card-width:      $base-width - $border-width;
+$card-height:     $base-height - $border-width;
+$pip-width:       $base-width * (5.5 / 25);
+$pip-height:      $base-width * (11  / 25);
+
 
 .game {
   
@@ -19,15 +24,18 @@ $pip-height:      (11  / 25) * $card-width;
   .stack {
     display: inline-block;
     width: $card-width;
-    margin: 0 $default-padding 0 0;
+    margin: 0 10px 0 0;
     &.stack3 { margin: 0; }
     padding: 0;
   }
 
   .card {
+    @include border-radius(4px);
     height: $card-height;
     width:  $card-width;
-    background-color: #fff;
+    text-align: center;
+    background-color: transparent;
+    border: $border-width solid $color-primary;
     margin: $default-padding 0;
     padding: 0;
 
@@ -35,10 +43,12 @@ $pip-height:      (11  / 25) * $card-width;
 
     .pips {
       display: inline-block;
+      margin-top: ($card-height - $pip-height) / 2;
 
       .pip {
         height: $pip-height;
         width: $pip-width;
+        margin: 0 2px;
       }
     }
   }
