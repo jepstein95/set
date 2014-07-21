@@ -39,8 +39,6 @@ define([
       _View.prototype.initialize.apply(this);
 
       this.cards = new Cards(null, { view: this });
-      this.picked = [];
-      this.timer = null;
       this.canPick = false;
     },
 
@@ -115,10 +113,10 @@ define([
       }
 
       $(card).append(div);
-      this.addToStack(card);
+      this.addToField(card);
     },
 
-    addToStack: function(card) {
+    addToField: function(card) {
       var size1 = $('.stack1 li').length;
       var size2 = $('.stack2 li').length;
       var size3 = $('.stack3 li').length;
@@ -140,10 +138,8 @@ define([
       $(toRemove).remove()
     },
       
-    resetCards: function(model) {
-      $('.stack1').empty();
-      $('.stack2').empty();
-      $('.stack3').empty();
+    resetCards: function() {
+      $('.stack').empty();
     },
 
     setCall: function(room, username) {
@@ -154,9 +150,6 @@ define([
       if (content.username == me.get('username')) {
         $('.set-msg').text('Pick three cards.');
         this.canPick = true;
-        this.timer = window.setTimeout(function() {
-          api.emit('timeout', { room: me.get('room') });
-        }, 6000);
       } else {
         $('.set-msg').text(content.username + ' called a set.');
       }
@@ -178,16 +171,12 @@ define([
       $(id).addClass('selected');
     },
 
-    setPickResponse: function(content) {      
+    setPickResponse: function(content) {
+      this.canPick = false;
+
       _.delay(function() {
         $('.selected').removeClass('selected');
       }, 1000);
-      
-      if (content.username == me.get('username')) {
-        window.clearTimeout(this.timer);
-        this.timer = null;
-        this.canPick = false;
-      }
 
       if (content.bool) {
         $('.set-msg').text(content.username + ' got a set.');
@@ -215,7 +204,6 @@ define([
       });
       me.set('room', null);
       this.canPick = false;
-      this.timer = null;
     },
 
     src: function(model) {
@@ -239,6 +227,7 @@ define([
       ];
       return 'a' + card.join('');
     }
+    
   });
 
 });
