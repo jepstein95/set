@@ -1,3 +1,8 @@
+$card-width:      184px;
+$card-height:     (16  / 25) * $card-width;
+$pip-width:       (5.5 / 25) * $card-width;
+$pip-height:      (11  / 25) * $card-width;
+
 .game {
   
   .info,
@@ -12,19 +17,30 @@
   }
 
   .stack {
-    @include column(4);
-    &.stack3 { @include last; }
-  
+    display: inline-block;
+    width: $card-width;
+    margin: 0 $default-padding 0 0;
+    &.stack3 { margin: 0; }
     padding: 0;
   }
 
-  .card-img {
-    height: 30px;
-    width: 60px;
-  }
-
   .card {
+    height: $card-height;
+    width:  $card-width;
+    background-color: #fff;
+    margin: $default-padding 0;
+    padding: 0;
+
     &.selected { background-color: $color-grayscale-select; }
+
+    .pips {
+      display: inline-block;
+
+      .pip {
+        height: $pip-height;
+        width: $pip-width;
+      }
+    }
   }
   
 }

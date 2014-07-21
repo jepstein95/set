@@ -97,26 +97,28 @@ define([
     },
 
     addCardLi: function(model) {
-
-      var colors = ['Red', 'Green', 'Blue'],
-          numbers = [1, 2, 3],
-          shapes = ['Ovals', 'Diamonds', 'Squiggles'],
-          fills = ['Open', 'Shaded', 'Filled'];
-
-      var number = numbers[model.get('number')];
-      var color = colors[model.get('color')];
-      var shape = shapes[model.get('shape')];
-      var fill = fills[model.get('fill')];
-      var src = '/images/' + number + ' ' + color + ' ' + fill + ' ' + shape + ' (2).jpg';
+      var src = this.src(model),
+          id  = this.id(model);
+      
       var card = $('<li>');
-      var id = model.get('number') + ' ' + model.get('color') + ' ' + model.get('shape') + ' ' +  model.get('fill');
       card.attr('id', id);
       card.attr('class', 'card');
-      var img = $('<img>');
-      img.attr('id', id);
-      img.addClass('card-img');
-      img.attr('src', src);
-      $(card).append(img);
+
+      var div = $('<div>');
+      div.attr('class', 'pips');
+      
+      for (var i = 0; i <= model.get('number'); i++) {
+        var img = $('<img>');
+        img.addClass('pip');
+        img.attr('src', src);
+        $(div).append(img);
+      }
+
+      $(card).append(div);
+      this.addToStack(card);
+    },
+
+    addToStack: function(card) {
       var size1 = $('.stack1 li').length;
       var size2 = $('.stack2 li').length;
       var size3 = $('.stack3 li').length;
@@ -166,13 +168,13 @@ define([
         api.emit('card-selected', {
           username: me.get('username'),
           room: me.get('room'),
-          card: $(e.target).attr('id')
+          card: $(e.target).attr('id').split(' ')
         });
       }
     },
 
     cardSelected: function(content) {
-      var id = '#' + content.card;
+      var id = '#' + content.card.join(' ');
       $(id).addClass('selected');
     },
 
@@ -185,9 +187,13 @@ define([
 
       if (content.bool) {
         $('.set-msg').text(content.username + ' got a set.');
-        _.each(content.picked, function(value) {
-          var chars = value.split(' ');
-          var card = this.cards.findWhere({ number: chars[0], color: chars[1], shape: chars[2], fill: chars[3] });
+        _.each(content.picked, function(pick) {
+          var card = this.cards.findWhere({
+            number: pick[0],
+            color: pick[1],
+            shape: pick[2],
+            fill: pick[3]
+          });
           this.cards.remove(card);
         });
       } else if (content.timeout) {
@@ -206,6 +212,28 @@ define([
       me.set('room', null);
       this.canPick = false;
       this.timer = null;
+    },
+
+    src: function(model) {
+      var colors  = ['red', 'green', 'purple'],
+          fills   = ['open', 'shaded', 'filled'],
+          shapes  = ['oval', 'diamond', 'squiggle'],
+
+          color   = colors[model.get('color')],
+          fill    = fills[model.get('fill')],
+          shape   = shapes[model.get('shape')];
+
+      return '/images/' + color + '_' + fill + '_' + shape + '.png';
+    },
+
+    id: function(model) {
+      var card = [
+        model.get('number'),
+        model.get('color'),
+        model.get('fill'),
+        model.get('shape')
+      ];
+      return card.join(' ');
     }
 
   });
