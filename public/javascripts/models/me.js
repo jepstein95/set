@@ -8,7 +8,6 @@ define([
   return Backbone.Model.extend({
     username: null,
     nickname: null,
-    room: null,
-    avail: false
+    room: null
   });
 });

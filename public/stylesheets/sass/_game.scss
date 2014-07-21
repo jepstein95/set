@@ -1,11 +1,14 @@
 .game {
   
-  .info {
+  .info,
+  .buttons {
     width: 100%;
+    height: rhythm(5);
     display: inline-block;
 
     p { float: left; }
     input[type=button] { float: right; }
+    .deck-size { float: right; }
   }
 
   .stack {
@@ -18,6 +21,10 @@
   .card-img {
     height: 30px;
     width: 60px;
+  }
+
+  .card {
+    &.selected { background-color: $color-grayscale-select; }
   }
   
 }

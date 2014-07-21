@@ -35,10 +35,12 @@ require([
           'connect-response',
           'get-users-response',
           'start-game-response',
+          'join-game-response',
           'set-call-response',
           'set-pick-response',
-          'game-info',
-          'chat-message-response'
+          'card-selected-response',
+          'chat-message-response',
+          'game-update'
         ],
 
         socket = io.connect();

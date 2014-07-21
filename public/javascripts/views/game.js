@@ -15,31 +15,33 @@ define([
 
     template: 'game',
 
-    timer: null,
-    canPick: false,
-    picked: [],
-
     events: {
       'click .new':       'newGame',
       'click .start':     'startGame',
       'click .set':       'setCall',
+      'click .card':      'selectCard', 
       'click .leave':     'leave'
     },
 
     listeners: {
-      'join-room':              'joinRoom',
-      'leave':                  'leave',
-      'join-game':              'joinGame',
-      'start-game-response':    'startGameResponse',
-      'set-call-response':      'setCallResponse',
-      'set-pick-response':      'setPickResponse',
-      'game-info':              'updateGame'
+      'join-room':                  'joinRoom',
+      'leave':                      'leave',
+      'join-game':                  'joinGame',
+      'start-game-response':        'startGameResponse',
+      'join-game-response':         'joinGameResponse',
+      'set-call-response':          'setCallResponse',
+      'set-pick-response':          'setPickResponse',
+      'card-selected-response':     'cardSelected',
+      'game-update':                'updateGame'
     },
 
     initialize: function() {
       _View.prototype.initialize.apply(this);
 
       this.cards = new Cards(null, { view: this });
+      this.picked = [];
+      this.timer = null;
+      this.canPick = false;
     },
 
     newGame: function() {
@@ -65,8 +67,6 @@ define([
         username: me.get('username'),
         room: room
       });
-
-      this.render({ room: me.get('room') });
     },
 
     startGame: function() {
@@ -74,16 +74,13 @@ define([
     },
 
     startGameResponse: function(content) {
-      var self = this;
       this.render({ room: me.get('room'), started: true });
-      _.each(content.cards, function(card) {
-        self.cards.add(new Card({
-          number: card[0],
-          color: card[1],
-          fill: card[2],
-          shape: card[3]
-        }));
-      });
+      this.updateGame(content);
+    },
+
+    joinGameResponse: function(content) {
+      this.render({ room: me.get('room'), started: content.started });
+      this.updateGame(content);
     },
 
     updateGame: function(content) {
@@ -96,6 +93,7 @@ define([
           shape: card[3]
         }));
       });
+      $('.deck-size').text('Cards left: ' + content.deckSize);
     },
 
     addCardLi: function(model) {
@@ -113,21 +111,12 @@ define([
       var card = $('<li>');
       var id = model.get('number') + ' ' + model.get('color') + ' ' + model.get('shape') + ' ' +  model.get('fill');
       card.attr('id', id);
+      card.attr('class', 'card');
       var img = $('<img>');
+      img.attr('id', id);
       img.addClass('card-img');
       img.attr('src', src);
       $(card).append(img);
-      $(card).click(function(event) {
-        if (canPick) {
-          picked.push(id);
-          if (picked.length == 3) {
-            api.emit('set-pick', { bool: true, room: me.get('room'), username: me.get('username'), picked: picked });
-            window.clearTimeout(timer);
-            canPick = false;
-            picked = [];
-          }
-        }
-      });
       var size1 = $('.stack1 li').length;
       var size2 = $('.stack2 li').length;
       var size3 = $('.stack3 li').length;
@@ -156,33 +145,51 @@ define([
     },
 
     setCall: function(room, username) {
-      this.emit('set-call', { room: me.get('room'), username: me.get('username') });
+      api.emit('set-call', { room: me.get('room'), username: me.get('username') });
     },
 
     setCallResponse: function(content) {
       if (content.username == me.get('username')) {
-        canPick = true;
         $('.set-msg').text('Pick three cards.');
-        timer = window.setTimeout(function() {
-          canPick = false;
-          picked = [];
-          api.emit('set-pick', { bool: false, room: content.room });
-        }, 3000);
+        this.canPick = true;
+        this.timer = window.setTimeout(function() {
+          api.emit('timeout', { room: me.get('room') });
+        }, 6000);
       } else {
         $('.set-msg').text(content.username + ' called a set.');
       }
     },
 
+    selectCard: function(e) {
+      if (this.canPick) {
+        $(e.target).addClass('selected');
+        api.emit('card-selected', {
+          username: me.get('username'),
+          room: me.get('room'),
+          card: $(e.target).attr('id')
+        });
+      }
+    },
+
+    cardSelected: function(content) {
+      var id = '#' + content.card;
+      $(id).addClass('selected');
+    },
+
     setPickResponse: function(content) {
+      
+      if (content.username == me.get('username')) {
+        window.clearTimeout(this.timer);
+        this.canPick = false;
+      }
+
       if (content.bool) {
-        // update score
         $('.set-msg').text(content.username + ' got a set.');
         _.each(content.picked, function(value) {
           var chars = value.split(' ');
           var card = this.cards.findWhere({ number: chars[0], color: chars[1], shape: chars[2], fill: chars[3] });
           this.cards.remove(card);
         });
-        this.drawCards(3);
       } else if (content.timeout) {
         $('.set-msg').text('Time up!');
       } else {
@@ -192,9 +199,13 @@ define([
 
     leave: function() {
       api.trigger('leave');
-      api.emit('leave-room', { room: me.get('room'), username: me.get('username') });
+      api.emit('leave-room', {
+        room: me.get('room'),
+        username: me.get('username')
+      });
       me.set('room', null);
-      me.set('avail', true);
+      this.canPick = false;
+      this.timer = null;
     }
 
   });
