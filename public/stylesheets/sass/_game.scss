@@ -2,8 +2,8 @@ $border-width:    2px;
 
 $base-width:      176px;
 $base-height:     $base-width * (16  / 25);
-$card-width:      $base-width - $border-width;
-$card-height:     $base-height - $border-width;
+$card-width:      $base-width - 2 * $border-width;
+$card-height:     $base-height - 2 * $border-width;
 $pip-width:       $base-width * (5.5 / 25);
 $pip-height:      $base-width * (11  / 25);
 
@@ -24,7 +24,7 @@ $pip-height:      $base-width * (11  / 25);
   .stack {
     display: inline-block;
     width: $card-width;
-    margin: 0 10px 0 0;
+    margin: 0 $default-padding 0 0;
     &.stack3 { margin: 0; }
     padding: 0;
   }
