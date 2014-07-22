@@ -83,6 +83,7 @@ define([
 
     updateGame: function(content) {
       var self = this;
+      this.cards.reset();
       _.each(content.cards, function(card) {
         self.cards.add(new Card({
           number: card[0],
@@ -157,27 +158,21 @@ define([
 
     selectCard: function(e) {
       if (this.canPick) {
-        $(e.target).addClass('selected');
         api.emit('card-selected', {
           username: me.get('username'),
           room: me.get('room'),
-          card: $(e.target).attr('id').split('').splice(1,4)
+          card: this.toArray($(e.target).attr('id'))
         });
       }
     },
 
     cardSelected: function(content) {
-      var id = '#a' + content.card.join('');
+      var id = '#' + this.cardId(content.card);
       $(id).addClass('selected');
     },
 
     setPickResponse: function(content) {
       this.canPick = false;
-
-      _.delay(function() {
-        $('.selected').removeClass('selected');
-      }, 1000);
-
       if (content.bool) {
         $('.set-msg').text(content.username + ' got a set.');
         _.each(content.picked, function(pick) {
@@ -225,9 +220,20 @@ define([
         model.get('fill'),
         model.get('shape')
       ];
+      return this.cardId(card);
+    },
+
+    cardId: function(card) {
       return 'a' + card.join('');
+    },
+
+    toArray: function(id) {
+      var array = id.split('').splice(1,4);
+      return array.map(function(val) {
+        return parseInt(val, 10);
+      });
     }
-    
+
   });
 
 });
