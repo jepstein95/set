@@ -1,11 +1,10 @@
 var express = require('express'),
     http = require('http'),
     passwordHash = require('password-hash'),
-    sanitizer = require('sanitizer'),
-    _ = require('underscore'),
     path = require('path'),
     routes = require('./routes'),
-    database = require('./lib/database');
+    database = require('./lib/database'),
+    _ = require('underscore');
 
 var EXPRESS_SID_KEY = 'express.sid',
     COOKIE_SECRET = 'mel is bad at set.',
@@ -112,16 +111,13 @@ app.post('/login', function(req, res) {
 });
 
 var server = http.createServer(app);
-var io = require('socket.io', { rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling'] }).listen(server);
+var io = require('socket.io').listen(server);
 
 io.set('authorization', function (data, callback) {
     if(!data.headers.cookie) {
         return callback('No cookie transmitted.', false);
     }
 
-    // We use the Express cookieParser created before to parse the cookie
-    // Express cookieParser(req, res, next) is used initialy to parse data in "req.headers.cookie".
-    // Here our cookies are stored in "data.headers.cookie", so we just pass "data" to the first argument of function
     cookieParser(data, {}, function(parseErr) {
         if(parseErr) { return callback('Error parsing cookies.', false); }
 
@@ -130,23 +126,20 @@ io.set('authorization', function (data, callback) {
                         (data.signedCookies && data.signedCookies[EXPRESS_SID_KEY]) ||
                         (data.cookies && data.cookies[EXPRESS_SID_KEY]);
 
-        // Then we just need to load the session from the Express Session Store
+        // Load session from Express Session Store
         sessionStore.load(sidCookie, function(err, session) {
-            // And last, we check if the used has a valid session and if he is logged in
             if (err || !session || !session.user) {
                 callback('Not logged in.', false);
             } else {
-                // If you want, you can attach the session to the handshake data, so you can use it again later
-                // You can access it later with "socket.handshake.session"
+                // Attach session to handshake data
                 data.session = session;
-
                 callback(null, true);
             }
         });
     });
 });
 
-// socket logic
+// Socket logic
 require('./lib/socket')(io);
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
