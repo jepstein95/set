@@ -1,17 +1,11 @@
 @import 'compass/css3';
-@import 'blueprint';
-@import 'compass/typography/vertical_rhythm';
+@import 'compass/typography';
 
 //@import url(http://fonts.googleapis.com/css?family=Raleway);
 //@import url(http://fonts.googleapis.com/css?family=Abel);
 //@import url(http://fonts.googleapis.com/css?family=Ropa+Sans);
 //@import url(http://fonts.googleapis.com/css?family=Josephin+Sans);
 @import url(http://fonts.googleapis.com/css?family=Play);
-
-$blueprint-grid-columns:      24;
-$blueprint-container-size:    996px;
-$blueprint-grid-width:        30px;
-$blueprint-grid-margin:       12px;
 
 $base-font-size:              16px;
 $base-line-height:            6px;
@@ -30,9 +24,9 @@ $color-grayscale-select:      rgba(102,102,102,.5); // grayscale-light
 $color-primary:               #fff;
 $color-highlight:             $color-set-purple;
 
-$default-padding:             $blueprint-grid-margin;
-$default-border:              2px solid $color-primary;
-$default-margin:              $blueprint-grid-margin 0;
+$default-padding:             6px;
+$default-margin:              $default-padding;
+$default-border:              $default-padding;
 
 
 %clearfix {
@@ -72,10 +66,6 @@ $default-margin:              $blueprint-grid-margin 0;
   &:hover {
     color: $color-highlight;
   }
-}
-
-@function content-size($size, $padding) {
-  @return ( $size - 2 * $padding );
 }
 
 @mixin box-shadow {

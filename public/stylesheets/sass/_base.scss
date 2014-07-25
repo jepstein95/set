@@ -8,9 +8,13 @@
 }
 
 body {
-  color: $color-primary;
-  background-image: url(/../images/binding_dark.png);
+  background-image: url('../images/tweed.png');
   font-family: $default-font-stack;
+}
+
+div {
+  padding: 0;
+  margin: 0;
 }
 
 h1, h2, h3, h4, h5 {

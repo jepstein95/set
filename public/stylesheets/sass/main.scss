@@ -5,63 +5,35 @@
 @import 'popup';
 
 
-$header-height: 60px;
-$cut-size: 20px;
-
-
-.header,
-.content {
-  @include container;
+.frame {
   position: fixed;
-  left: 50%;
-  margin-left: -1 * ($blueprint-container-size / 2);
-}
-
-.header {
+  display: flex;
+  justify-content: center;
   top: $default-padding;
-  height: $header-height;
-  padding: $default-padding;
-}
-
-.content {
-  top: $header-height + $default-padding;
   bottom: $default-padding;
+  right: 0;
+  left: 0;
 }
 
-.lobby,
 .game,
-.chat {
+.sidebar {
   display: inline-block;
-  color: $color-primary;
   vertical-align: top;
+  text-align: left;
   height: 100%;
-  margin: 0;
-}
-
-.lobby {
-  @include column(5);
 }
 
 .game {
-  @include column(14);
-  @extend %content-well;
+  width: 600px;
+  margin: 0 (2 * $default-margin);
 }
 
-.chat {
-  @include column(5);
-  @include last;
+.sidebar {
+  width: 15%;
 }
 
-.users {
+.users,
+.lobby {
   @include scrollbar-vert;
-  background-color: transparent;
   height: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-.user,
-.message {
-  @extend %content-well;
-  margin: 0 0 $blueprint-grid-margin 0;
 }
