@@ -7,33 +7,26 @@
 
 .frame {
   position: fixed;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
-  top: $default-padding;
-  bottom: $default-padding;
+  top: 0;
   right: 0;
+  bottom: 0;
   left: 0;
 }
 
-.game,
-.sidebar {
-  display: inline-block;
-  vertical-align: top;
-  text-align: left;
-  height: 100%;
-}
-
-.game {
+.center {
   width: 600px;
-  margin: 0 (2 * $default-margin);
+  height: 100%;
+  margin: 0 $default-padding;
+  padding: ($default-padding * 3) $default-padding;
+  background-color: $color-grayscale-dark;
+  border: $default-padding solid $color-highlight;
+  box-shadow: 3px 3px 6px $color-grayscale-darker inset;
 }
 
 .sidebar {
   width: 15%;
-}
-
-.users,
-.lobby {
-  @include scrollbar-vert;
   height: 100%;
+  padding: $default-padding 0;
 }

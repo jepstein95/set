@@ -2,12 +2,8 @@
 
 $form-height:         128px;
 $form-width:          320px;
-//$content-height:      content-size($form-height, $default-padding);
-//$content-width:       content-size($form-width, $default-padding);
-
-$content-height: 4px;
-$content-width: 4px;
-
+$content-height:      $form-height;
+$content-width:       $form-width;
 
 $displace-vert:       ($content-height / 3) + ($default-padding / 2);
 $displace-horiz:      (1 / 2) * $displace-vert;

@@ -8,7 +8,9 @@ $pip-width:       $base-width * (5.5 / 25);
 $pip-height:      $base-width * (11  / 25);
 
 
-.game {
+.game {  
+  height: 100%;
+  background-color: #fff;
   
   .info,
   .buttons {

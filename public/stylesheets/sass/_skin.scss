@@ -5,28 +5,31 @@
 //@import url(http://fonts.googleapis.com/css?family=Abel);
 //@import url(http://fonts.googleapis.com/css?family=Ropa+Sans);
 //@import url(http://fonts.googleapis.com/css?family=Josephin+Sans);
-@import url(http://fonts.googleapis.com/css?family=Play);
+//@import url(http://fonts.googleapis.com/css?family=Play);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
 
 $base-font-size:              16px;
 $base-line-height:            6px;
-$default-font-stack:          'Play', Helvetica, sans-serif;
+$default-font-stack:          'Open Sans', Helvetica, sans-serif;
+$default-font-weight:         300;
 
 $color-set-red:               #cc0000;
 $color-set-green:             #009933;
 $color-set-purple:            #660066;
 
-$color-grayscale-lightest:    #333333;
-$color-grayscale-light:       #666666;
-$color-grayscale-dark:        #999999;
+$color-grayscale-darker:      #333333;
+$color-grayscale-dark:        #666666;
+$color-grayscale-light:       #999999;
+$color-grayscale-lighter:     #cccccc;
 
 $color-grayscale-select:      rgba(102,102,102,.5); // grayscale-light
 
 $color-primary:               #fff;
-$color-highlight:             $color-set-purple;
+$color-highlight:             #d2691e;
 
 $default-padding:             6px;
-$default-margin:              $default-padding;
-$default-border:              $default-padding;
+$default-margin:              $default-padding * 2;
+$default-border:              $default-padding / 2;
 
 
 %clearfix {

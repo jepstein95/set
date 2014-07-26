@@ -8,8 +8,8 @@
 }
 
 body {
-  background-image: url('../images/tweed.png');
   font-family: $default-font-stack;
+  font-weight: $default-font-weight;
 }
 
 div {
@@ -27,33 +27,35 @@ h1 {
 }
 
 p {
-  @include adjust-font-size-to(16px);
-  @include rhythm(.5, 0, 0, .5, 16px);
+  @include adjust-font-size-to(16px, 3);
+  @include rhythm(0, 1, 1, 0, 16px);
   &.label { display: inline-block; }
+  margin: 0;
 }
 
 ul {
   list-style-type: none;
 }
 
-input[type='text'],
-input[type='password'] {
+input[type] {
+  font-family: $default-font-stack;
   @include adjust-font-size-to(16px, 3);
   @include rhythm(0, 1, 1, 0, 16px);
-  @include leading-border(2px, 1);
-  @include trailing-border(2px, 1);
-  padding-left: $default-padding / 2;
+  margin: 0;
+}
+
+input[type='text'],
+input[type='password'] {
+  @include leading-border(3px, 1);
+  @include trailing-border(3px, 1);
+  padding-left: $default-padding;
   border-color: $color-primary;
-  background-color: transparent;
+  background-color: $color-highlight;
   color: $color-primary;
 }
 
 input[type='button'] {
-  @include adjust-font-size-to(16px, 3);
-  @include rhythm(0, 1, 1, 0, 16px);
   border: none;
-  background-color: transparent;
+  background-color: $color-highlight;
   color: $color-primary;
-
-  @extend %hover-state-gray;
 }
