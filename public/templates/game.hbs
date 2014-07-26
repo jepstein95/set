@@ -1,35 +1,3 @@
-<div class='buttons'>
-  
-  {{#if room}}  <!-- In a room -->
-
-    <p class='room'>{{room}}</p>
-    <input type='button' class='leave' value='Quit'>
-
-    {{#if started}}  <!-- In a room and game has started -->
-
-      <input type='button' class='set' value='SET!'>
-
-    {{else}} <!-- In a room and game has not started -->
-
-      <input type='button' class='start' value='Start Game'>
-
-    {{/if}}
-
-  {{else}}  <!-- Not in a room -->
-
-    <input type='button' class='new' value='New Game'>
-
-  {{/if}}
-
-</div>
-
-<div class='info'>
-
-  <p class='set-msg'></p>
-  <p class='deck-size'></p>
-
-</div>
-
 <ul class='stack stack1'></ul>
 <ul class='stack stack2'></ul>
 <ul class='stack stack3'></ul>

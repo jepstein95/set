@@ -4,10 +4,11 @@ define([
   'underscore',
   'backbone',
   'views/base',
+  'views/game-info',
   'collections/cards',
   'models/card'
 
-], function($, _, Backbone, _View, Cards, Card) {
+], function($, _, Backbone, _View, GameInfo, Cards, Card) {
   
   return _View.extend({
 
@@ -16,15 +17,10 @@ define([
     template: 'game',
 
     events: {
-      'click .new':       'newGame',
-      'click .start':     'startGame',
-      'click .set':       'setCall',
-      'click .card':      'selectCard', 
-      'click .leave':     'leave'
+      'click .card':  'selectCard'
     },
 
     listeners: {
-      'join-room':                  'joinRoom',
       'leave':                      'leave',
       'join-game':                  'joinGame',
       'start-game-response':        'startGameResponse',
@@ -38,46 +34,17 @@ define([
     initialize: function() {
       _View.prototype.initialize.apply(this);
 
+      this.gameInfo = new GameInfo();
+
       this.cards = new Cards(null, { view: this });
       this.canPick = false;
     },
 
-    newGame: function() {
-      var room = me.get('username');
-      me.set('room', room);
-      api.emit('new-game', {
-        username: me.get('username'),
-        room: me.get('username')
-      });
-
-      this.render({ room: room });
-
-      //api.once('request-users-response', function(content) {
-      //  var popup = this.renderTemplate('game/invite', { users: content });
-      //  this.$el.append(popup);
-      //}, this);
-      //api.trigger('request-users', {});
-    },
-
-    joinGame: function(room) {
-      me.set('room', room);
-      api.emit('join-game', {
-        username: me.get('username'),
-        room: room
-      });
-    },
-
-    startGame: function() {
-      api.emit('start-game', { room: me.get('room') });
-    },
-
     startGameResponse: function(content) {
-      this.render({ room: me.get('room'), started: true });
       this.updateGame(content);
     },
 
     joinGameResponse: function(content) {
-      this.render({ room: me.get('room'), started: content.started });
       this.updateGame(content);
     },
 
@@ -92,7 +59,6 @@ define([
           shape: card[3]
         }));
       });
-      $('.deck-size').text('Cards left: ' + content.deckSize);
     },
 
     addCardLi: function(model) {
@@ -143,17 +109,9 @@ define([
       $('.stack').empty();
     },
 
-    setCall: function(room, username) {
-      api.emit('set-call', { room: me.get('room'), username: me.get('username') });
-    },
-
     setCallResponse: function(content) {
-      if (content.username == me.get('username')) {
-        $('.set-msg').text('Pick three cards.');
+      if (content.username == me.get('username'))
         this.canPick = true;
-      } else {
-        $('.set-msg').text(content.username + ' called a set.');
-      }
     },
 
     selectCard: function(e) {
@@ -174,7 +132,6 @@ define([
     setPickResponse: function(content) {
       this.canPick = false;
       if (content.bool) {
-        $('.set-msg').text(content.username + ' got a set.');
         _.each(content.picked, function(pick) {
           var card = this.cards.findWhere({
             number: pick[0],
@@ -184,20 +141,10 @@ define([
           });
           this.cards.remove(card);
         });
-      } else if (content.timeout) {
-        $('.set-msg').text('Time up!');
-      } else {
-        $('.set-msg').text('Not a set.');
       }
     },
 
     leave: function() {
-      api.trigger('leave');
-      api.emit('leave-room', {
-        room: me.get('room'),
-        username: me.get('username')
-      });
-      me.set('room', null);
       this.canPick = false;
     },
 
@@ -214,13 +161,12 @@ define([
     },
 
     id: function(model) {
-      var card = [
+      return cardId([
         model.get('number'),
         model.get('color'),
         model.get('fill'),
         model.get('shape')
-      ];
-      return this.cardId(card);
+      ]);
     },
 
     cardId: function(card) {
