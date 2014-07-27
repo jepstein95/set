@@ -71,10 +71,26 @@ $default-border:              $default-padding / 2;
   }
 }
 
-@mixin box-shadow {
-  box-shadow: 4px 4px rgba(0,0,0,.5);
-}
-
 @mixin scrollbar-vert {
   overflow-y: scroll;
+}
+
+@mixin triangle($direction, $color, $height: 42px, $width: 12px) {
+  position: relative;
+  &:before {
+    position: absolute;
+    content: '';
+    height: 0;
+    width: 0;
+    border-top:    ($height / 2) solid transparent;
+    border-bottom: ($height / 2) solid transparent;
+    @if $direction == 'left' {
+      border-right: $width solid $color;
+      left: -1 * $width;
+    } @else {
+      border-left:  $width solid $color;
+      right: -1 * $width;
+    }
+    top: 0;
+  }
 }

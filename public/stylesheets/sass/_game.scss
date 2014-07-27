@@ -11,17 +11,6 @@ $pip-height:      $base-width * (11  / 25);
 .game {  
   height: 100%;
   background-color: #fff;
-  
-  .info,
-  .buttons {
-    width: 100%;
-    height: rhythm(5);
-    display: inline-block;
-
-    p { float: left; }
-    input[type=button] { float: right; }
-    .deck-size { float: right; }
-  }
 
   .stack {
     display: inline-block;

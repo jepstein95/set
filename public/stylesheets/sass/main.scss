@@ -1,32 +1,33 @@
 @import 'base';
+@import 'header';
+@import 'game/info';
 @import 'game';
 @import 'chat';
 @import 'lobby';
-@import 'popup';
 
 
 .frame {
   position: fixed;
   display: inline-flex;
   justify-content: center;
-  top: 0;
+  bottom: $default-padding;
+  top: $default-padding;
   right: 0;
-  bottom: 0;
   left: 0;
 }
 
 .center {
   width: 600px;
   height: 100%;
-  margin: 0 $default-padding;
-  padding: ($default-padding * 3) $default-padding;
-  background-color: $color-grayscale-dark;
-  border: $default-padding solid $color-highlight;
-  box-shadow: 3px 3px 6px $color-grayscale-darker inset;
+  margin: 0 6px;
+  padding: 18px 6px;
+  background-color: #666;
+  border: 6px solid $color-highlight;
+  @include box-shadow(#333 1px 1px 3px inset);
 }
 
 .sidebar {
   width: 15%;
   height: 100%;
-  padding: $default-padding 0;
+  padding: 24px 0;
 }

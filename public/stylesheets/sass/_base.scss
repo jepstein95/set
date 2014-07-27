@@ -8,8 +8,11 @@
 }
 
 body {
+  background-color: #333;
   font-family: $default-font-stack;
   font-weight: $default-font-weight;
+  padding: 0;
+  margin: 0;
 }
 
 div {
@@ -18,19 +21,26 @@ div {
 }
 
 h1, h2, h3, h4, h5 {
+  font-family: $default-font-stack;
+  font-weight: $default-font-weight;
   color: $color-primary;
 }
 
 h1 {
-  @include adjust-font-size-to(24px);
-  @include rhythm(.5, 0, 0, .5, 24px);
+  @include adjust-font-size-to(24px, 4);
+  @include rhythm(0, .5, .5, 0, 24px);
+  padding-left: $default-padding * 2;
+  margin: 0;
 }
 
 p {
   @include adjust-font-size-to(16px, 3);
   @include rhythm(0, 1, 1, 0, 16px);
   &.label { display: inline-block; }
-  margin: 0;
+  padding-left: $default-padding * 2;
+  margin-right: 0;
+  margin-left:  0;
+  color: $color-highlight;
 }
 
 ul {
@@ -39,23 +49,38 @@ ul {
 
 input[type] {
   font-family: $default-font-stack;
+  font-weight: $default-font-weight;
   @include adjust-font-size-to(16px, 3);
   @include rhythm(0, 1, 1, 0, 16px);
-  margin: 0;
+  padding-right: $default-padding;
+  padding-left:  $default-padding;
+  margin-right:  0;
+  margin-left:   0;
+  text-align: left;
+  width: 100%;
 }
 
 input[type='text'],
 input[type='password'] {
   @include leading-border(3px, 1);
   @include trailing-border(3px, 1);
-  padding-left: $default-padding;
-  border-color: $color-primary;
-  background-color: $color-highlight;
   color: $color-primary;
+  background-color: #333;
+  border-color: #666;
+  border-style: solid;
+
+  &:hover {
+    border-color: $color-highlight;
+  }
 }
 
 input[type='button'] {
   border: none;
-  background-color: $color-highlight;
-  color: $color-primary;
+  color: #fff;
+  background-color: #333;
+  border-left: 6px solid #333;
+
+  &:hover {
+    border-left-color: $color-highlight;
+  }
 }

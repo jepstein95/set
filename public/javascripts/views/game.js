@@ -4,7 +4,7 @@ define([
   'underscore',
   'backbone',
   'views/base',
-  'views/game-info',
+  'views/game/info',
   'collections/cards',
   'models/card'
 
