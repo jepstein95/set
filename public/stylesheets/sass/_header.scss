@@ -1,0 +1,5 @@
+.header {
+  padding: $default-padding;
+  background-color: $color-grayscale-dark;
+  @include triangle('right', $color-grayscale-dark);
+}

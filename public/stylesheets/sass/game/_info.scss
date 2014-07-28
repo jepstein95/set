@@ -1,0 +1,13 @@
+.game-info {
+  margin: $default-margin 0;
+  padding: $default-padding;
+  background-color: #666;
+  @include triangle('right', #666);
+
+  .room,
+  .leave {
+    margin-bottom: $default-padding;
+  }
+
+  .info { display: none; }
+}
