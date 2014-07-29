@@ -30,27 +30,12 @@ require([
     window.me = new Me();
 
     var frame = new Frame(),
-
-        ioEvents = [
-          'connect-response',
-          'get-users-response',
-          'start-game-response',
-          'join-game-response',
-          'set-call-response',
-          'set-pick-response',
-          'card-selected-response',
-          'chat-message-response',
-          'game-update'
-        ],
-
         socket = io.connect();
 
-    // Register io events
-    _.each(ioEvents, function(event) {
-      socket.on(event, function(content) {
-        api.trigger(event, content);
-      });
-    });
+    // Override socket.$emit to trigger api events
+    socket.$emit = function() {
+      api.trigger.apply(api, arguments);
+    }
 
     // Give api access to socket
     api.emit = function(message, content) {
