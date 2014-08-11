@@ -17,7 +17,7 @@ $transition-horiz:    ($form-width / 2) + $displace-horiz;
 }
 
 .create, .login {
-  @extend %content-well;
+  @include content-well;
   height: $form-height;
   width: $form-width;
   position: relative;

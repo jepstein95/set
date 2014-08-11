@@ -8,9 +8,9 @@
 //@import url(http://fonts.googleapis.com/css?family=Play);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
 
+$default-font-stack:          'Open Sans', Helvetica, sans-serif;
 $base-font-size:              16px;
 $base-line-height:            6px;
-$default-font-stack:          'Open Sans', Helvetica, sans-serif;
 $default-font-weight:         300;
 
 $color-set-red:               #bf3020;
@@ -48,11 +48,6 @@ $default-border:              $default-padding / 2;
   margin-right: auto;
 }
 
-%content-well {
-  background-color: rgba(0,0,0,.5);
-  padding: $default-padding;
-}
-
 %hover-state-gray {
   &:hover {
     background-color: $color-grayscale-select;
@@ -69,6 +64,11 @@ $default-border:              $default-padding / 2;
   &:hover {
     color: $color-highlight;
   }
+}
+
+@mixin content-well {
+  background-color: #666;
+  padding: $default-padding;
 }
 
 @mixin scrollbar-vert {

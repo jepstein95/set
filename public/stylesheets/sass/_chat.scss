@@ -1,15 +1,39 @@
 .chat {
+  height: 100%;
+
+  .new-msg{
+    @include content-well;
+    @include triangle('left', #666);
+
+    .submit-msg {
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      right: 12px;
+      top: 12px;
+      border: none;
+      background-color: #666;
+
+      &:hover {
+        background-color: $color-highlight;
+      }
+
+    }
+  }
 
   .messages {
     @include scrollbar-vert;
+    padding-bottom: 42px;
+    height: 100%;
   }
 
-  .new-msg{
-    padding: 0 $default-padding;
-    background-color: #333;
-    @include triangle('left', #333);
+  .message {
+    @include content-well;
+    margin: 12px 0 0 6px;
 
-    .submit-msg { display: none }
+    p {
+      display: inline-block;
+    }
   }
 
 }
