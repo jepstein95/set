@@ -161,7 +161,7 @@ define([
     },
 
     id: function(model) {
-      return cardId([
+      return this.cardId([
         model.get('number'),
         model.get('color'),
         model.get('fill'),
